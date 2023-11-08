@@ -160,7 +160,7 @@ pushd $EDITBASE_WORKSPACE
   fi
   
   # unmount first boot, then root partition
-  unmount_image $EDITBASE_MOUNT_PATH
+  unmount_image $EDITBASE_MOUNT_PATH force
   chmod 777 $EDITBASE_IMG_PATH
 
   if [ -n "$EDITBASE_IMAGE_RESIZEROOT" ]
