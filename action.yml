@@ -18,6 +18,9 @@ inputs:
     description: "Additional environment variables to pass to the docker call, as JSON object, e.g. {'OCTOPRINT_VERSION': '1.7.0', 'OTHER_VAR': 'value'}"
     required: false
     default: '{}'
+  # docker_image:
+  #   description: "Docker image to use, e.g., 'octoprint/custopizer:latest'"
+  #   required: true
 runs:
   using: "composite"
   steps:
@@ -31,7 +34,9 @@ runs:
         fi
 
         envs=$(echo '${{ inputs.environment }}' | jq -r 'to_entries | map("-e " + .key + "=" + (.value | tostring)) | join(" ")')
-        command="--rm --privileged $envs -v ${{ inputs.workspace }}:/CustoPiZer/workspace -v ${{ inputs.scripts }}:/CustoPiZer/workspace/scripts $config_mount ghcr.io/octoprint/custopizer:latest"
+        # image="${{ inputs.docker_image }}"
+        image="markparker5/custopizer:latest"
+        command="--rm --privileged $envs -v ${{ inputs.workspace }}:/CustoPiZer/workspace -v ${{ inputs.scripts }}:/CustoPiZer/workspace/scripts $config_mount $image"
 
         echo "About to execute 'docker run $command'..."
 
