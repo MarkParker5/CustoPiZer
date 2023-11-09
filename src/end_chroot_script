@@ -6,7 +6,7 @@
 # GPL V3
 ########
 set -ex
-
+echo End Chroot Script
 rm -r /usr/sbin/policy-rc.d || true
 
 if [ -n "$EDITBASE_APT_PROXY" ]
@@ -30,3 +30,4 @@ fi
 #cleanup
 apt-get clean
 apt-get autoremove -y
+echo End Chroot Script Done

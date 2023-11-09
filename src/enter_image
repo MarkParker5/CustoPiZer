@@ -84,7 +84,9 @@ pushd $EDITBASE_WORKSPACE
     fi
     
     ### Execute bash ###
+    echo Enter image: execute...
     execute_chroot_bash
+    echo Enter image: did exit...
     
     if [ "$EDITBASE_DISTRO" == "raspbian" ]; then
       restoreLd
@@ -92,5 +94,6 @@ pushd $EDITBASE_WORKSPACE
   popd
   
   # unmount first boot, then root partition
+  echo Enter image: unmounting...
   unmount_image $EDITBASE_MOUNT_PATH
 popd

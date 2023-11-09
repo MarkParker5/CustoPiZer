@@ -87,6 +87,7 @@ function fixLd(){
 }
 
 function restoreLd(){
+    echo "Restoring ld.so.preload"
     if [ -f etc/ld.so.preload ]; then
         sed -i 's@\#/usr/lib/arm-linux-gnueabihf/libcofi_rpi.so@/usr/lib/arm-linux-gnueabihf/libcofi_rpi.so@' etc/ld.so.preload
         sed -i 's@\#/usr/lib/arm-linux-gnueabihf/libarmmem.so@/usr/lib/arm-linux-gnueabihf/libarmmem.so@' etc/ld.so.preload
@@ -94,6 +95,7 @@ function restoreLd(){
         # Debian Buster/ Raspbian 2019-06-20
         sed -i 's@#/usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so@/usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so@' etc/ld.so.preload
     fi
+    echo "Restoring ld.so.preload done"
 }
 
 function detach_all_loopback(){

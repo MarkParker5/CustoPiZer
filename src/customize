@@ -89,6 +89,7 @@ function execute_chroot_script() {
   fi
   
   #cleanup
+  echo "Cleaning up chroot..."
   rm chroot_script
 }
 
@@ -151,6 +152,8 @@ pushd $EDITBASE_WORKSPACE
     fi
   popd
 
+  echo Editing done, unmounting...
+
   # if there are any files to export, do that now and clean up the export folder
   if [ -d "$EDITBASE_MOUNT_PATH/export" ]; then
     pushd $EDITBASE_WORKSPACE
@@ -160,9 +163,9 @@ pushd $EDITBASE_WORKSPACE
   fi
   
   # unmount first boot, then root partition
-  echo starting unmount
+  echo Starting unmount
   unmount_image $EDITBASE_MOUNT_PATH force || true
-  echo finished unmount
+  echo Finished unmount
   chmod 777 $EDITBASE_IMG_PATH
 
   if [ -n "$EDITBASE_IMAGE_RESIZEROOT" ]
