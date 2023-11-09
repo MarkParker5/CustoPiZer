@@ -171,7 +171,10 @@ function unmount_image() {
     echo "Unmounting $m in progress..."
     fuser -km $m || true
     umount $m || umount -l $m || true
+    echo "Unmounting $m done"
   done
+
+  echo "Unmounting path $mount_path is done"
 }
 
 function cleanup() {
