@@ -26,4 +26,4 @@ jobs:
         context: ./src
         push: true
         tags: |
-          MarkParker5/custopizer:latest
+          markparker5/custopizer:latest
