@@ -170,7 +170,7 @@ function unmount_image() {
   do
     echo "Unmounting $m in progress..."
     fuser -km $m || true
-    umount $m || umount -l $m
+    umount $m || umount -l $m || true
   done
 }
 
