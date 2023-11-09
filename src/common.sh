@@ -168,9 +168,9 @@ function unmount_image() {
   # Also we sort in reverse to get the deepest mounts first.
   for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
   do
-    echo "Unmounting $m..."
+    echo "Unmounting $m in progress..."
     fuser -km $m || true
-    sudo umount $m
+    umount $m || umount -l $m
   done
 }
 
