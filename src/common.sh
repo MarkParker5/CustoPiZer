@@ -169,6 +169,7 @@ function unmount_image() {
   for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
   do
     echo "Unmounting $m..."
+    fuser -km $m || true
     sudo umount $m
   done
 }
