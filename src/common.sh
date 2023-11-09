@@ -146,14 +146,15 @@ function unmount_image() {
     force=$2
   fi
 
-  if [ -n "$force" ]
-  then
-    for process in $(sudo lsof $mount_path | awk '{print $2}')
-    do
-      echo "Killing process id $process..."
-      sudo kill -9 $process
-    done
-  fi
+  # if [ -n "$force" ]
+  # then
+  for process in $(sudo lsof $mount_path | awk '{print $2}')
+  do
+    echo "Killing process id $process..."
+    sudo kill -9 $process || true
+    echo "done"
+  done
+  # fi
 
   # Unmount everything that is mounted
   # 
@@ -171,10 +172,10 @@ function unmount_image() {
     echo "Unmounting $m in progress..."
     fuser -km $m || true
     umount $m || umount -l $m || true
-    echo "Unmounting $m done"
+    echo "done"
   done
 
-  echo "Unmounting path $mount_path is done"
+  echo "Unmounting image is done"
 }
 
 function cleanup() {
